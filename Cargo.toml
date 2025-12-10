@@ -13,3 +13,10 @@ path = "src/bin/injector.rs"
 [dependencies]
 hudhook = "0.8"
 imgui = "0.12"
+tracing = "0.1"
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.62", features = [
+    "Win32_System_Diagnostics_ToolHelp",
+    "Win32_System_Threading",
+] }

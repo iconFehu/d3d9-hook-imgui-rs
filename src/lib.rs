@@ -55,9 +55,14 @@ impl D3D9RenderLoop {
     fn handle_input(&mut self, ui: &mut Ui) {
         let io = ui.io();
         
-        // Toggle menu with INSERT key (VK_INSERT = 0x2D)
+        // 使用 ImGui IO 检测 Insert 键
+        // 参考 imgui-sys: ImGuiKey_Insert = 521
+        let insert_pressed = io.keys_down[imgui::sys::ImGuiKey_Insert as usize];
+        
+        tracing::info!("insert_pressed: {}", insert_pressed);
+        
+        // Toggle menu with INSERT key
         // Detect key press (transition from not pressed to pressed)
-        let insert_pressed = io.keys_down[0x2D];
         if insert_pressed && !self.last_insert_state {
             self.display_menu = !self.display_menu;
         }
